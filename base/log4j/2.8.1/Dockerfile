@@ -1,4 +1,4 @@
-FROM vulhub/java:8u162-jdk AS build-env
+FROM openjdk:8u162-jdk AS build-env
 
 RUN mkdir /opt/maven \
     && wget -qO- http://archive.apache.org/dist/maven/binaries/apache-maven-3.2.2-bin.tar.gz | tar -xz -C /opt/maven --strip-components=1
@@ -9,7 +9,7 @@ RUN set -ex \
     && cd /usr/src \
     && /opt/maven/bin/mvn package assembly:single
 
-FROM openjdk:8-jre-slim
+FROM openjdk:8u162-jre-slim
 
 LABEL maintainer="phithon <root@leavesongs.com>"
 
